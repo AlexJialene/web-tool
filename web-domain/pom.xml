@@ -12,5 +12,16 @@
     <artifactId>web-domain</artifactId>
     <packaging>jar</packaging>
 
+    <properties>
+        <tkmybatis.version>3.3.9</tkmybatis.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>tk.mybatis</groupId>
+            <artifactId>mapper</artifactId>
+            <version>${tkmybatis.version}</version>
+        </dependency>
+    </dependencies>
 
 </project>

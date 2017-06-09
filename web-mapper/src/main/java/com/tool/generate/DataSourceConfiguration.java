@@ -1,9 +1,12 @@
 package com.tool.generate;
 
 import com.alibaba.druid.pool.DruidDataSource;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 import org.springframework.context.annotation.PropertySource;
 
 import java.sql.SQLException;
@@ -13,10 +16,11 @@ import java.sql.SQLException;
  * @create 2017-06-09 16:07
  **/
 
-//@Configuration
-/*@PropertySource("classpath:jdbc.properties")
+@Configuration
+@PropertySource("classpath:jdbc.properties")
 public class DataSourceConfiguration {
 
+    private Logger logger = LoggerFactory.getLogger(DataSourceConfiguration.class);
     @Value("${jdbc.driverClass}")
     private String jdbcDriverClass;
     @Value("${jdbc.url}")
@@ -61,8 +65,9 @@ public class DataSourceConfiguration {
     private int maxPoolPreparedStatementPerConnectionSize;
 
 
-    //@Bean(name = "dataSource")
+    @Bean
     public DruidDataSource dataSource() throws SQLException {
+        logger.info("============DataSourceConfiguration.dataSource==============");
         DruidDataSource dataSource = new DruidDataSource();
         dataSource.setDriverClassName(jdbcDriverClass);
         dataSource.setUrl(url);
@@ -88,4 +93,4 @@ public class DataSourceConfiguration {
     }
 
 
-}*/
+}

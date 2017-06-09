@@ -1,4 +1,13 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.tool.domain.User">
+<mapper namespace="com.tool.mapper.UserMapper">
+    <resultMap id="BaseResultMap" type="com.tool.domain.User">
+        <id column="id" jdbcType="BIGINT" javaType="java.lang.Long" property="id"/>
+        <result column="name" jdbcType="VARCHAR" javaType="java.lang.String" property="name"/>
+        <result column="age" jdbcType="VARCHAR" javaType="java.lang.Integer" property="age"/>
+    </resultMap>
 
+
+    <select id="testSelect" resultMap="BaseResultMap">
+        SELECT * FROM user where id=1
+    </select>
 </mapper>
