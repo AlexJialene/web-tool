@@ -1,0 +1,30 @@
+server:
+  port: 8080
+
+
+logging:
+  level:
+    root: info
+    org.springframework.web: info
+  file: ./log/log-tool.log
+  #pattern:
+      #file: [tool] %d %-5p [%t] %c | %m%n
+      #console: [tool] %d %-5p [%t] %c | %m%n
+
+
+spring:
+  thymeleaf:
+    cache: false
+    encoding: utf-8
+    prefix: classpath:/templates/
+    suffix: .html
+    mode: HTML5
+    content-type: text/html
+  #mvc:
+    #view:
+      #prefix:
+      #suffix:
+
+
+
+
