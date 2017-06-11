@@ -2,6 +2,7 @@ package com.tool.controller;
 
 
 import com.github.pagehelper.PageInfo;
+import com.tool.common.vo.ResultVo;
 import com.tool.controller.base.BaseController;
 import com.tool.domain.User;
 import com.tool.service.UserService;
@@ -42,9 +43,10 @@ public class UserController extends BaseController{
     @ResponseBody
     public Object user(){
 
-        new Exception();
-        //return user;
-        return 12/0;
+        resultVo.setHttpResCode(200);
+        resultVo.setHttpResCode(1);
+
+        return resultVo;
     }
 
     @RequestMapping("/admin")

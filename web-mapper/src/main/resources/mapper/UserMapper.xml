@@ -10,4 +10,8 @@
     <select id="testSelect" resultMap="BaseResultMap">
         SELECT * FROM user where id=1
     </select>
+
+    <select id="selectUsers" resultMap="BaseResultMap">
+        SELECT * FROM user
+    </select>
 </mapper>

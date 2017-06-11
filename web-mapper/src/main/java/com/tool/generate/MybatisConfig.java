@@ -8,8 +8,10 @@ import org.mybatis.spring.annotation.MapperScan;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.core.io.support.ResourcePatternResolver;
@@ -26,6 +28,7 @@ import java.io.IOException;
  **/
 @Configuration
 //@MapperScan("com.tool.mapper")
+@PropertySource("classpath:mapper-generate.properties")
 @EnableTransactionManagement
 public class MybatisConfig implements TransactionManagementConfigurer{
     private Logger log = LoggerFactory.getLogger(MybatisConfig.class);
@@ -33,6 +36,12 @@ public class MybatisConfig implements TransactionManagementConfigurer{
     @Autowired
     private DruidDataSource dataSource;
 
+    @Value("${mybatisConfigName}")
+    private String configName;
+    @Value("${mapperLocation}")
+    private String mapperLocation;
+    @Value("${typeAliasesPackage}")
+    private String typeAliasesPackage;
 
     @Override
     public PlatformTransactionManager annotationDrivenTransactionManager() {
@@ -43,11 +52,11 @@ public class MybatisConfig implements TransactionManagementConfigurer{
     public SqlSessionFactory sqlSessionFactory() throws IOException {
 
         SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
-        sqlSessionFactoryBean.setConfigLocation(new ClassPathResource("mybatis-config.xml"));
-        PathMatchingResourcePatternResolver pathMatchingResourcePatternResolver = new PathMatchingResourcePatternResolver();
-        String path = ResourcePatternResolver.CLASSPATH_ALL_URL_PREFIX + "/mapper/*.xml";
-        sqlSessionFactoryBean.setMapperLocations(pathMatchingResourcePatternResolver.getResources(path));
-        sqlSessionFactoryBean.setTypeAliasesPackage("com.tool.domain");
+        sqlSessionFactoryBean.setConfigLocation(new ClassPathResource(configName));
+        //PathMatchingResourcePatternResolver pathMatchingResourcePatternResolver = new PathMatchingResourcePatternResolver();
+        ResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
+        sqlSessionFactoryBean.setMapperLocations(resolver.getResources(mapperLocation));
+        sqlSessionFactoryBean.setTypeAliasesPackage(typeAliasesPackage);
         sqlSessionFactoryBean.setDataSource(dataSource);
         try{
 

@@ -1,8 +1,10 @@
 package com.tool.generate;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
 import tk.mybatis.spring.mapper.MapperScannerConfigurer;
 
 import java.util.Properties;
@@ -13,9 +15,16 @@ import java.util.Properties;
  **/
 @Configuration
 @AutoConfigureAfter({MybatisConfig.class})
+//@PropertySource("classpath:mapper-generate.properties")
 public class MybatisMapperConfig {
 
+    /*@Value("${basePackage}")
+    private String basePackage;*/
 
+    /**
+     * tk scan configurer
+     * @return MapperScannerConfigurer
+     */
     @Bean
     public MapperScannerConfigurer mybatisMapperScannerConfigurer(){
 

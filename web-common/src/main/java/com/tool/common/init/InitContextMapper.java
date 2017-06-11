@@ -1,4 +1,4 @@
-package com.tool.init;
+package com.tool.common.init;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

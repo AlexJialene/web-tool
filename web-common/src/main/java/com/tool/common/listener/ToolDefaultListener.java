@@ -1,12 +1,10 @@
-package com.tool.listener;
+package com.tool.common.listener;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
-import javax.servlet.annotation.WebListener;
-import java.util.Timer;
 
 /**
  * @author alex-jiayu
