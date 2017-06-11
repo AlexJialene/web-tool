@@ -46,4 +46,6 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
     protected BaseMapper<User> getBaseMapper() {
         return this.userMapper;
     }
+
+
 }

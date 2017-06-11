@@ -8,6 +8,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.jdbc.datasource.DataSourceTransactionManager;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import java.sql.SQLException;
 
@@ -66,6 +68,7 @@ public class DataSourceConfiguration {
 
 
     @Bean
+    @Primary
     public DruidDataSource dataSource() throws SQLException {
         logger.info("============DataSourceConfiguration.dataSource==============");
         DruidDataSource dataSource = new DruidDataSource();
@@ -91,6 +94,14 @@ public class DataSourceConfiguration {
         dataSource.setMaxPoolPreparedStatementPerConnectionSize(maxPoolPreparedStatementPerConnectionSize);
         return dataSource;
     }
+
+
+    /*@Bean
+    @Primary
+    public DataSourceTransactionManager masterTransactionManager() throws SQLException {
+        return new DataSourceTransactionManager(dataSource());
+    }*/
+
 
 
 }

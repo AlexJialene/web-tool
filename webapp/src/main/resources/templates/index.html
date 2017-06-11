@@ -2,15 +2,149 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <title>hello</title>
+    <title>pdf-ilinetoo</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link th:href="@{/mui.min.css}" rel="stylesheet" type="text/css" />
+    <link th:href="@{/style.css}" rel="stylesheet" type="text/css" />
+    <link th:href="@{/caseVerte.css}" rel="stylesheet" type="text/css" />
+    <script th:src="@{/jquery-1.11.1.min.js}"></script>
+    <script th:src="@{/mui.min.js}"></script>
+    <script th:src="@{/script.js}"></script>
+    <style>
+        div {
+            margin : 5px;
+        }
+    </style>
 </head>
 <body>
+<div id="sidedrawer" class="mui--no-user-select">
+    <div id="sidedrawer-brand" class="mui--appbar-line-height">
+        <span class="mui--text-title">Brand.io</span>
+    </div>
+    <div class="mui-divider"></div>
+    <ul>
+        <li>
+            <strong>Category 1</strong>
+            <ul>
+                <li><a href="#">Item 1</a></li>
+                <li><a href="#">Item 2</a></li>
+                <li><a href="#">Item 3</a></li>
+            </ul>
+        </li>
+        <li>
+            <strong>Category 2</strong>
+            <ul>
+                <li><a href="#">Item 1</a></li>
+                <li><a href="#">Item 2</a></li>
+                <li><a href="#">Item 3</a></li>
+            </ul>
+        </li>
+        <li>
+            <strong>Category 3</strong>
+            <ul>
+                <li><a href="#">Item 1</a></li>
+                <li><a href="#">Item 2</a></li>
+                <li><a href="#">Item 3</a></li>
+            </ul>
+        </li>
+    </ul>
+</div>
+<header id="header">
+    <div class="mui-appbar mui--appbar-line-height">
+        <div class="mui-container-fluid">
+            <a class="sidedrawer-toggle mui--visible-xs-inline-block mui--visible-sm-inline-block js-show-sidedrawer">☰</a>
+            <a class="sidedrawer-toggle mui--hidden-xs mui--hidden-sm js-hide-sidedrawer">☰</a>
+            <span class="mui--text-title mui--visible-xs-inline-block mui--visible-sm-inline-block">Brand.io</span>
+        </div>
+    </div>
+</header>
+<div id="content-wrapper">
+    <div class="mui-container-fluid">
+        <div class="mui-row">
+            <div class="mui-col-sm-10 mui-col-sm-offset-1">
+                <div class="space-top"></div>
 
-<p th:text="'Hello！, ' + ${name} + '!'" >3333</p>
-<!--<tr th:each="u : ${pageInfo.list}">
-    <td th:text="${u.name}">test-name</td>
-    <td th:text="${u.age}">test-age</td>
-</tr>-->
+                <br /><br /><br />
+
+                <div class="space-top"></div>
+                <h2>Default Buttons</h2>
+                <!-- <p>或将照片拖到这里，单次最多可选300张</p> -->
+                <div class="mui-panel">
+
+                    <form class="mui-form" >
+                        <div  id="div-file" style="display:block">
+                            <div class="mui-textfield mui-textfield--float-label">
+                                <input type="file"/>
+                                <!-- <label>name</label> -->
+                            </div>
+                            <div>
+                                <button id="button" class="mui-btn mui-btn--raised mui-btn--primary">Button</button>
+                            </div>
+                        </div>
+                        <div class="mui-col-xs-5">
+                            <div id="caseViolette" class="verte" style="display: none;">
+                                <div id="cercle">
+                                    <div id="cercleCache"></div>
+                                </div>
+                                <div id="load">
+                                    <p>压缩中</p>
+                                </div>
+                                <div id="point"></div>
+                            </div>
+                        </div>
+                        <div class="mui-col-xs-4">
+                            <div class="verte" style="display: none;">
+                                #名称：head first 设计模式<br />
+                                #大小：45M
+                            </div>
+                        </div>
+                        <!--<div id="caseVerte" class="verte" style="display: none;width: 100%">
+                            <div id="case1"></div>
+                            <div id="case2"></div>
+                            <div id="case3"></div>
+                            <div id="case4"></div>
+                            <div id="case5"></div>
+                            <div id="case6"></div>
+                            <div id="load">
+                                <p>loading ...</p>
+                            </div>
+                        </div>-->
+                        <!--<progress value="22" max="100"></progress>-->
+                        <div id="div-file-d" style="display:none">
+                            We reserve the right to change our Privacy Policy and other terms stated below at any time. If changes occur, we will clearly indicate such alterations at the top of this page with the date of modification. If you do not agree to this Privacy Policy and the other terms stated below, please do not use any of our services and let us know about your concerns.
+                        </div>
+                    </form>
+
+                </div>
+
+                <div class="space-bottom"></div>
+
+                <h2>隐私条款 </h2>
+
+                <div class="mui-panel">
+                    We reserve the right to change our Privacy Policy and other terms stated below at any time. If changes occur, we will clearly indicate such alterations at the top of this page with the date of modification. If you do not agree to this Privacy Policy and the other terms stated below, please do not use any of our services and let us know about your concerns.
+                </div>
+
+
+
+
+                <div class="space-bottom"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<footer id="footer">
+    <div class="mui-container-fluid">
+        <br />
+        Made with ♥ by <a href="https://www.muicss.com">MUI</a>
+    </div>
+</footer>
+<script>
+
+    $('#button').click(function(){
+        $('.verte').css("display","block");
+        $('#div-file').css("display","none");
+    })
+</script>
 </body>
 </html>

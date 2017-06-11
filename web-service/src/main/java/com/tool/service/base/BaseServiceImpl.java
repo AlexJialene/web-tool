@@ -93,9 +93,13 @@ public abstract class BaseServiceImpl<T> implements BaseService<T> {
         return getBaseMapper().updateByPrimaryKeySelective(t);
     }
 
+    public boolean existsWithPrimaryKey(Object o) {
+        return getBaseMapper().existsWithPrimaryKey(o);
+    }
+
     public List<T> pageList(Page<T> page) {
         if ((page.getPageNum() != 0) && (page.getPageSize() != 0)) {
-            PageHelper.startPage(page.getPageNum(), page.getPageSize(), "id");
+            PageHelper.startPage(page.getPageNum(), page.getPageSize());
         }
         return getBaseMapper().selectAll();
     }
