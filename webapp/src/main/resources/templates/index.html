@@ -130,6 +130,8 @@
 
     uploader.on('uploadStart', function (file) {
         var $mime = file.type;
+
+        console.log($mime);
         var $suffix = file.ext;
         if('pdf' != $suffix && $suffix != "PDF" ){
             uploader.cancelFile( file );
