@@ -18,8 +18,8 @@ spring:
     encoding: utf-8
     prefix: classpath:/templates/
     suffix: .html
-    mode: HTML5
     content-type: text/html
+    mode: LEGACYHTML5
   #mvc:
     #view:
       #prefix:

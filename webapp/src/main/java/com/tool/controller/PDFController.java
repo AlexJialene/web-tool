@@ -1,8 +1,20 @@
 package com.tool.controller;
 
-/**
- * Created by Alex_ on 2017/6/10.
- */
+import com.tool.controller.base.BaseController;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
-public class PDFController {
+@RestController
+@RequestMapping("/pdf")
+public class PDFController extends BaseController{
+
+
+    @RequestMapping("/fileUpload")
+    public Object pdfUpload(@RequestParam("file")MultipartFile file){
+
+        return null;
+    }
+
 }

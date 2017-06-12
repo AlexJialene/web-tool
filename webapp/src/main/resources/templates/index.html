@@ -3,16 +3,19 @@
 
 <head>
     <title>pdf-ilinetoo</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <link th:href="@{/mui.min.css}" rel="stylesheet" type="text/css" />
-    <link th:href="@{/style.css}" rel="stylesheet" type="text/css" />
-    <link th:href="@{/caseVerte.css}" rel="stylesheet" type="text/css" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link th:href="@{/mui.min.css}" rel="stylesheet" type="text/css"/>
+    <link th:href="@{/style.css}" rel="stylesheet" type="text/css"/>
+    <link th:href="@{/caseVerte.css}" rel="stylesheet" type="text/css"/>
+    <link th:href="@{webuploader/webuploader.css}" rel="stylesheet" type="text/css"/>
+
     <script th:src="@{/jquery-1.11.1.min.js}"></script>
     <script th:src="@{/mui.min.js}"></script>
     <script th:src="@{/script.js}"></script>
+    <script th:src="@{webuploader/webuploader.js}"></script>
     <style>
         div {
-            margin : 5px;
+            margin: 5px;
         }
     </style>
 </head>
@@ -34,7 +37,6 @@
         </li>
         <li>
             <strong>关于</strong>
-
         </li>
     </ul>
 </div>
@@ -53,55 +55,42 @@
             <div class="mui-col-sm-10 mui-col-sm-offset-1">
                 <div class="space-top"></div>
 
-                <br /><br /><br />
+                <br/><br/><br/>
 
                 <div class="space-top"></div>
-                <h2>Default Buttons</h2>
-                <!-- <p>或将照片拖到这里，单次最多可选300张</p> -->
+                <h2>Compress PDF</h2>
                 <div class="mui-panel">
-
-                    <!--<form class="mui-form" >-->
-                        <div  id="div-file" style="display:block">
-                            <div class="mui-textfield mui-textfield--float-label">
-                                <input type="file"/>
-                                <!-- <label>name</label> -->
+                    <div id="div-file" style="display:block">
+                        <div class="mui-textfield mui-textfield--float-label">
+                            <!--<input type="file" id="picker"/>-->
+                            <div id="picker" >选择文件</div>
+                        </div>
+                        <div>
+                            <button id="button" class="mui-btn mui-btn--raised mui-btn--primary">Button</button>
+                        </div>
+                    </div>
+                    <div class="mui-col-xs-5">
+                        <div id="caseBlanche" style="display: none" class="verte1">
+                            <div id="rond">
+                                <div id="test"></div>
                             </div>
-                            <div>
-                                <button id="button" class="mui-btn mui-btn--raised mui-btn--primary">Button</button>
+                            <div id="load" style="margin-top: 25px">
+                                <p>压缩中</p>
                             </div>
                         </div>
-                        <div class="mui-col-xs-5">
-                            <div id="caseBlanche" style="display: none" class="verte1">
-                                <div id="rond">
-                                    <div id="test"></div>
-                                </div>
-                                <div id="load" style="margin-top: 25px">
-                                    <p>压缩中</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="mui-col-xs-4">
-                            <div class="verte" style="display: none;">
-                                #名称：head first 设计模式<br />
-                                #大小：45M
-                            </div>
-                        </div>
-                        <!--<div id="caseVerte" class="verte" style="display: none;width: 100%">
-                            <div id="case1"></div>
-                            <div id="case2"></div>
-                            <div id="case3"></div>
-                            <div id="case4"></div>
-                            <div id="case5"></div>
-                            <div id="case6"></div>
+                        <div id="caseMarron" style="display: none;" class="verte2">
+                            <div id="boule"></div>
                             <div id="load">
-                                <p>loading ...</p>
+                                <p>上传中 ...</p>
                             </div>
-                        </div>-->
-                        <!--<progress value="22" max="100"></progress>-->
-                        <div id="div-file-d" style="display:none">
-                            We reserve the right to change our Privacy Policy and other terms stated below at any time. If changes occur, we will clearly indicate such alterations at the top of this page with the date of modification. If you do not agree to this Privacy Policy and the other terms stated below, please do not use any of our services and let us know about your concerns.
                         </div>
-                    <!--</form>-->
+                    </div>
+                    <div class="mui-col-xs-4">
+                        <div class="verte" style="display: none;">
+                            #名称：head first 设计模式<br/>
+                            #大小：45M
+                        </div>
+                    </div>
 
                 </div>
 
@@ -110,10 +99,11 @@
                 <h2>隐私条款 </h2>
 
                 <div class="mui-panel">
-                    We reserve the right to change our Privacy Policy and other terms stated below at any time. If changes occur, we will clearly indicate such alterations at the top of this page with the date of modification. If you do not agree to this Privacy Policy and the other terms stated below, please do not use any of our services and let us know about your concerns.
+                    We reserve the right to change our Privacy Policy and other terms stated below at any time. If
+                    changes occur, we will clearly indicate such alterations at the top of this page with the date of
+                    modification. If you do not agree to this Privacy Policy and the other terms stated below, please do
+                    not use any of our services and let us know about your concerns.
                 </div>
-
-
 
 
                 <div class="space-bottom"></div>
@@ -123,16 +113,42 @@
 </div>
 <footer id="footer">
     <div class="mui-container-fluid">
-        <br />
-        Made with ♥ by <a href="https://www.muicss.com">MUI</a>
+        <br/>
+        Made with ♥ by <a href="#">PDF.iLinetoo</a>
     </div>
 </footer>
 <script>
+    var file_max_size = 5000000;
+    var uploader = WebUploader.create({
+        pick: {
+            id: '#picker',
+            lable: "点击上传文件"
+        },
+        auto: true,
 
-    $('#button').click(function(){
-        $('.verte').css("display","block");
-        $('.verte1').css("display","block");
-        $('#div-file').css("display","none");
+    })
+
+    uploader.on('uploadStart', function (file) {
+        var $mime = file.type;
+        var $suffix = file.ext;
+        if('pdf' != $suffix && $suffix != "PDF" ){
+            uploader.cancelFile( file );
+        }
+        var $size = file.size;
+        if (file_max_size >= $size){
+            //prinf
+            uploader.cancelFile( file );
+        }
+
+
+
+    });
+
+
+    $('#button').click(function () {
+        $('.verte').css("display", "block");
+        $('.verte2').css("display", "block");
+        $('#div-file').css("display", "none");
     })
 </script>
 </body>
