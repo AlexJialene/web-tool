@@ -19,33 +19,22 @@
 <body>
 <div id="sidedrawer" class="mui--no-user-select">
     <div id="sidedrawer-brand" class="mui--appbar-line-height">
-        <span class="mui--text-title">Brand.io</span>
+        <span class="mui--text-title">PDF.iLinetoo</span>
     </div>
     <div class="mui-divider"></div>
     <ul>
         <li>
-            <strong>Category 1</strong>
+            <strong>工具栏</strong>
             <ul>
-                <li><a href="#">Item 1</a></li>
-                <li><a href="#">Item 2</a></li>
-                <li><a href="#">Item 3</a></li>
+                <li><a href="#">pdf压缩</a></li>
             </ul>
         </li>
         <li>
-            <strong>Category 2</strong>
-            <ul>
-                <li><a href="#">Item 1</a></li>
-                <li><a href="#">Item 2</a></li>
-                <li><a href="#">Item 3</a></li>
-            </ul>
+            <strong>帮助</strong>
         </li>
         <li>
-            <strong>Category 3</strong>
-            <ul>
-                <li><a href="#">Item 1</a></li>
-                <li><a href="#">Item 2</a></li>
-                <li><a href="#">Item 3</a></li>
-            </ul>
+            <strong>关于</strong>
+
         </li>
     </ul>
 </div>
@@ -71,7 +60,7 @@
                 <!-- <p>或将照片拖到这里，单次最多可选300张</p> -->
                 <div class="mui-panel">
 
-                    <form class="mui-form" >
+                    <!--<form class="mui-form" >-->
                         <div  id="div-file" style="display:block">
                             <div class="mui-textfield mui-textfield--float-label">
                                 <input type="file"/>
@@ -82,14 +71,13 @@
                             </div>
                         </div>
                         <div class="mui-col-xs-5">
-                            <div id="caseViolette" class="verte" style="display: none;">
-                                <div id="cercle">
-                                    <div id="cercleCache"></div>
+                            <div id="caseBlanche" style="display: none" class="verte1">
+                                <div id="rond">
+                                    <div id="test"></div>
                                 </div>
-                                <div id="load">
+                                <div id="load" style="margin-top: 25px">
                                     <p>压缩中</p>
                                 </div>
-                                <div id="point"></div>
                             </div>
                         </div>
                         <div class="mui-col-xs-4">
@@ -113,7 +101,7 @@
                         <div id="div-file-d" style="display:none">
                             We reserve the right to change our Privacy Policy and other terms stated below at any time. If changes occur, we will clearly indicate such alterations at the top of this page with the date of modification. If you do not agree to this Privacy Policy and the other terms stated below, please do not use any of our services and let us know about your concerns.
                         </div>
-                    </form>
+                    <!--</form>-->
 
                 </div>
 
@@ -143,6 +131,7 @@
 
     $('#button').click(function(){
         $('.verte').css("display","block");
+        $('.verte1').css("display","block");
         $('#div-file').css("display","none");
     })
 </script>
