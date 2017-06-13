@@ -20,6 +20,11 @@ spring:
     suffix: .html
     content-type: text/html
     mode: LEGACYHTML5
+  http:
+    multipart:
+      max-file-size: 50Mb
+      max-request-size: 50Mb
+
   #mvc:
     #view:
       #prefix:

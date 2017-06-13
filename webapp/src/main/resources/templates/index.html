@@ -8,10 +8,12 @@
     <link th:href="@{/style.css}" rel="stylesheet" type="text/css"/>
     <link th:href="@{/caseVerte.css}" rel="stylesheet" type="text/css"/>
     <link th:href="@{webuploader/webuploader.css}" rel="stylesheet" type="text/css"/>
+    <link th:href="@{/sweetalert.css}" rel="stylesheet" type="text/css"/>
 
     <script th:src="@{/jquery-1.11.1.min.js}"></script>
     <script th:src="@{/mui.min.js}"></script>
     <script th:src="@{/script.js}"></script>
+    <script th:src="@{/sweetalert.min.js}"></script>
     <script th:src="@{webuploader/webuploader.js}"></script>
     <style>
         div {
@@ -65,9 +67,9 @@
                             <!--<input type="file" id="picker"/>-->
                             <div id="picker" >选择文件</div>
                         </div>
-                        <div>
-                            <button id="button" class="mui-btn mui-btn--raised mui-btn--primary">Button</button>
-                        </div>
+                        <!--<div>
+                            <button id="button" class="mui-btn mui-btn&#45;&#45;raised mui-btn&#45;&#45;primary">Button</button>
+                        </div>-->
                     </div>
                     <div class="mui-col-xs-5">
                         <div id="caseBlanche" style="display: none" class="verte1">
@@ -79,16 +81,19 @@
                             </div>
                         </div>
                         <div id="caseMarron" style="display: none;" class="verte2">
-                            <div id="boule"></div>
+                            <div id="boule" style="display:none;"></div>
                             <div id="load">
-                                <p>上传中 ...</p>
+                                <p id="upload-p">上传中 </p>
                             </div>
                         </div>
                     </div>
-                    <div class="mui-col-xs-4">
+                    <div class="mui-col-xs-6">
                         <div class="verte" style="display: none;">
-                            #名称：head first 设计模式<br/>
-                            #大小：45M
+                            <p id="file_name">#名称：head first 设计模式</p><br/>
+                            <p id="file_size">#大小：45M</p>
+                        </div>
+                        <div id="button-div" style="display: none">
+                            <button id="button" class="mui-btn mui-btn&#45;&#45;raised mui-btn&#45;&#45;primary">点击上传</button>
                         </div>
                     </div>
 
@@ -118,39 +123,79 @@
     </div>
 </footer>
 <script>
-    var file_max_size = 5000000;
+    var file_max_size = 50000000;
+    var file_name;
+    var file_size;
     var uploader = WebUploader.create({
         pick: {
             id: '#picker',
             lable: "点击上传文件"
         },
-        auto: true,
-
-    })
+        auto: false,
+        swf: 'webuploader/Uploader.swf',
+        chunked: true,
+        server: '/pdf/fileUpload',
+        tuntimeOrder: 'flash',
+        disableGlobalDnd: true,
+        threads: 1,
+        fileNumLimit: 2,
+        fileSizeLimit: 50 * 1024 * 1024,    // 50 M
+        fileSingleSizeLimit: 50 * 1024 * 1024
+    });
 
     uploader.on('uploadStart', function (file) {
-        var $mime = file.type;
+        $('#caseMarron boule').css("display" , "block");
+    });
 
-        console.log($mime);
+    uploader.on('fileQueued' , function (file) {
         var $suffix = file.ext;
-        if('pdf' != $suffix && $suffix != "PDF" ){
-            uploader.cancelFile( file );
-        }
         var $size = file.size;
-        if (file_max_size >= $size){
-            //prinf
+
+        if('pdf' != $suffix && "PDF" != $suffix ){
+            swal("请选择正确的pdf文件", "请选择正确的pdf文件", "error");
             uploader.cancelFile( file );
+        }else if (file_max_size < $size){
+            console.log($size)
+            uploader.cancelFile( file );
+            uploader.removeFile( file , true );
+            swal("pdf文件不得超过50M", "pdf文件不得超过50M", "error");
+        }else{
+            file_size = $size;
+            file_name = file.name;
+
+            $('.verte').css("display", "block");
+            $('#button-div').css("display", "block");
+
+            $('.verte2').css("display", "block");
+            $('#upload-p').text("pdf等待上传中");
+
+            $('#div-file').css("display", "none");
+            $('#file_name').text('#名称：'+file_name);
+            $('#file_size').text('#大小：'+file_size);
         }
+    })
 
-
+    uploader.on('uploadSuccess', function (file) {
+        $('.verte2').css("display", "none");
+        $('.verte1').css("display", "block");
+        $('.verte').css("display", "block");
+        $('#file_name').text('#名称：'+file_name);
+        $('#file_size').text('#大小：'+file_size);
 
     });
 
+    uploader.on('uploadProgress', function (file, percentage) {
+        var $upload = $('#upload-p');
+        $upload.text("上传中：" + Math.round(percentage * 100) + "%");
+    });
+
+
+
+
+
 
     $('#button').click(function () {
-        $('.verte').css("display", "block");
-        $('.verte2').css("display", "block");
-        $('#div-file').css("display", "none");
+        uploader.upload();
     })
 </script>
 </body>
