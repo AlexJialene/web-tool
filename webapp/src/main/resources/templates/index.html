@@ -151,10 +151,10 @@
         var $suffix = file.ext;
         var $size = file.size;
 
-        if('pdf' != $suffix && "PDF" != $suffix ){
+        /*if('pdf' != $suffix && "PDF" != $suffix ){
             swal("请选择正确的pdf文件", "请选择正确的pdf文件", "error");
             uploader.cancelFile( file );
-        }else if (file_max_size < $size){
+        }else*/ if (file_max_size < $size){
             console.log($size)
             uploader.cancelFile( file );
             uploader.removeFile( file , true );
