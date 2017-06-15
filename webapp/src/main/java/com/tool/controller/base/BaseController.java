@@ -4,6 +4,7 @@ import com.sun.org.apache.regexp.internal.RE;
 import com.tool.common.vo.ResultVo;
 import com.tool.util.JsonMapper;
 
+import java.io.File;
 import java.io.Serializable;
 
 /**
@@ -20,6 +21,19 @@ public abstract class BaseController<T , ID extends Serializable> {
 
 
 
+    protected static final String UPLOAD_PATH ;
+    static{
+        UPLOAD_PATH = new StringBuilder(Thread.currentThread()
+                .getContextClassLoader()
+                .getResource("")
+                .getPath())
+                .append("static/upload")
+                .toString();
+        File d = new File(UPLOAD_PATH);
+        if (!d.exists()){
+            d.mkdirs();
+        }
+    }
 
 
 }

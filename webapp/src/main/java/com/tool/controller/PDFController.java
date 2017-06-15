@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 
 @RestController
@@ -20,13 +21,14 @@ public class PDFController extends BaseController{
     @RequestMapping("/fileUpload")
     public Object pdfUpload(@RequestParam("file")MultipartFile file){
 
-        try {
-            FileByteUtil.byte2File(file.getBytes() , "F:" , "test1.jpg");
+        System.out.println(UPLOAD_PATH);
+        /*try {
+            FileByteUtil.byte2File(file.getBytes() , UPLOAD_PATH, "test1.jpg");
 
         } catch (IOException e) {
             e.printStackTrace();
         }
-
+*/
 
         return "";
     }
